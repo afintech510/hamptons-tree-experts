@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.85in" hint-size="100%,100%">
+
+  <div slot="footer" style="display:flex;align-items:center;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:#9AA3AB;padding-top:5px;border-top:1px solid #E2E5E8;">
+    <span>Draft for attorney review</span>
+    <span>Center Moriches, NY &middot; NY law</span>
+  </div>
+
+  <!-- ============== MASTHEAD ============== -->
+  <div style="height:9px;background:repeating-linear-gradient(-45deg,#17181A 0 13px,#F4C000 13px 26px);border-radius:2px;"></div>
+  <header style="margin:22px 0 6px;">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#55606B;">Eastern Rentals &nbsp;&middot;&nbsp; Center Moriches, NY</div>
+    <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:44px;line-height:1.02;letter-spacing:0.005em;text-transform:uppercase;color:#17181A;margin:10px 0 0;">Equipment Rental Agreement</h1>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:14px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#55606B;">
+      <span style="background:#17181A;color:#fff;padding:3px 10px;border-radius:2px;">Lessor-Protective Form</span>
+      <span>Governed by the laws of the State of New York</span>
+    </div>
+  </header>
+
+  <sc-if value="{{ showDraftBanner }}" hint-placeholder-val="{{ true }}">
+    <div style="margin:20px 0 6px;background:#FBF4D2;border:1px solid #E9D98A;border-left:5px solid #F4C000;border-radius:3px;padding:12px 16px;font-family:'Spectral',serif;font-size:12.5px;line-height:1.55;color:#5A4E1E;">
+      <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8A7414;">Draft &mdash; for attorney review</span><br>
+      This document is a complete, ready-to-review draft prepared for Eastern Rentals. It is written to be enforceable in New York but has not been reviewed by counsel. Have a New York attorney review it &mdash; particularly the clauses flagged at the end &mdash; before putting it into service.
+    </div>
+  </sc-if>
+
+  <!-- ============== PROTECTIVE POSTURE (commentary) ============== -->
+  <sc-if value="{{ showCommentary }}" hint-placeholder-val="{{ true }}">
+  <section style="margin:26px 0 8px;background:#F2F4F6;border:1px solid #E2E5E8;border-radius:4px;padding:18px 20px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#17181A;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #17181A;">Drafting Note &mdash; Protective Posture <span style="color:#8A949E;font-weight:400;">(not part of the Agreement)</span></div>
+    <p style="font-family:'Spectral',serif;font-size:13.5px;line-height:1.62;color:#33373B;margin:0;text-align:justify;">This draft is built to sit at the far owner-protective end of what New York courts will typically enforce: the Customer assumes all risk from delivery to confirmed retrieval, indemnifies the Company for third-party claims, waives its insurer's subrogation, and is liable for damage at full replacement cost and for loss or theft at full replacement value &mdash; while the Company disclaims all consequential, downtime, and lost-profit liability and caps any residual liability at fees paid. The single largest exposure for this business is <strong>customer self-operation of powered equipment</strong> &mdash; the skid steer, wood chipper, and stump grinder &mdash; where an untrained operator can cause catastrophic injury. That risk is addressed on three fronts that should be treated as non-negotiable: a mandatory certificate of insurance naming Eastern Rentals as additional insured before delivery of powered equipment (Section 7), an operator-competency certification and injury disclaimer (Section 8), and a broad assumption-of-risk and indemnity running from the moment of handover (Sections 5&ndash;6). The most legally sensitive terms &mdash; the arbitration/venue choice, the liquidated late-return and failed-delivery fees, and the scope of the damage waiver &mdash; are flagged inline with a <strong>[NOTE]</strong> tag and collected again at the end for counsel review.</p>
+  </section>
+
+  <div style="display:flex;align-items:center;gap:14px;margin:26px 0 4px;">
+    <div style="flex:1;height:6px;background:repeating-linear-gradient(-45deg,#17181A 0 10px,#F4C000 10px 20px);border-radius:2px;"></div>
+    <span style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55606B;white-space:nowrap;">Agreement Begins</span>
+    <div style="flex:1;height:6px;background:repeating-linear-gradient(-45deg,#17181A 0 10px,#F4C000 10px 20px);border-radius:2px;"></div>
+  </div>
+  </sc-if>
+
+  <!-- ============== PARTIES / RECITALS ============== -->
+  <p style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;margin:22px 0 0;text-align:justify;">This Equipment Rental Agreement (this <strong>&ldquo;Agreement&rdquo;</strong>) is made and entered into as of the date of electronic signature set forth in the signature block below (the <strong>&ldquo;Effective Date&rdquo;</strong>) by and between <strong>Eastern Rentals</strong>, an owner-operated equipment rental business located in Center Moriches, Suffolk County, New York (the <strong>&ldquo;Company&rdquo;</strong>), and the individual or entity identified in the signature block as the renter (the <strong>&ldquo;Customer&rdquo;</strong>). The Company and the Customer are each a <strong>&ldquo;Party&rdquo;</strong> and together the <strong>&ldquo;Parties.&rdquo;</strong></p>
+  <p style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;margin:12px 0 0;text-align:justify;">In consideration of the mutual covenants below and the rental fees paid, the Parties agree as follows. By signing, initialing, or otherwise electronically accepting this Agreement, or by accepting delivery of the Equipment, the Customer agrees to be bound by every term of this Agreement.</p>
+
+  <!-- ====== SECTION 1 DEFINITIONS ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">01</span>Definitions</h2>
+  <p style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;margin:0 0 8px;text-align:justify;">Capitalized terms have the meanings given below wherever they appear in this Agreement.</p>
+  <div style="font-family:'Spectral',serif;font-size:13.5px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>1.1 &ldquo;Equipment&rdquo;</strong> means the machine(s), trailer(s), dumpster(s), attachments, and accessories described in the booking and delivered to the Customer, together with all keys, manuals, safety devices, and components delivered with them.</p>
+    <p style="margin:8px 0;"><strong>1.2 &ldquo;Powered Equipment&rdquo;</strong> means self-propelled or engine/motor-driven Equipment that the Customer operates independently after delivery, including without limitation the skid steer, wood chipper, stump grinder, and concrete mixer.</p>
+    <p style="margin:8px 0;"><strong>1.3 &ldquo;Unpowered Equipment&rdquo;</strong> means non-powered assets dropped at the Customer&rsquo;s site for the Rental Period, including without limitation trailers and dumpsters.</p>
+    <p style="margin:8px 0;"><strong>1.4 &ldquo;Rental Period&rdquo;</strong> means the period beginning at Delivery and ending at Retrieval, as defined below, including any extension and any period of late return.</p>
+    <p style="margin:8px 0;"><strong>1.5 &ldquo;Delivery&rdquo;</strong> means the Company&rsquo;s placement of the Equipment at the Customer&rsquo;s designated site and the Customer&rsquo;s (or its authorized representative&rsquo;s) signature or electronic confirmation of receipt.</p>
+    <p style="margin:8px 0;"><strong>1.6 &ldquo;Retrieval&rdquo;</strong> means the Company&rsquo;s physical repossession of the Equipment from the Customer&rsquo;s site and the Company&rsquo;s signature or electronic confirmation of that repossession. Equipment is not &ldquo;returned&rdquo; until Retrieval is confirmed by the Company.</p>
+    <p style="margin:8px 0;"><strong>1.7 &ldquo;In the Customer&rsquo;s Possession&rdquo;</strong> means the entire period from the Customer&rsquo;s signature at Delivery until the Company&rsquo;s confirming signature at Retrieval, regardless of whether the Customer is physically present with or actively using the Equipment during that period.</p>
+    <p style="margin:8px 0;"><strong>1.8 &ldquo;Booking Fee&rdquo;</strong> means the non-refundable fee collected at reservation, which credits toward the total rental cost as provided in Section 3.</p>
+    <p style="margin:8px 0;"><strong>1.9 &ldquo;Security Deposit&rdquo;</strong> means the deposit equal to thirty percent (30%) of the pre-tax rental subtotal, handled as provided in Section 3.</p>
+    <p style="margin:8px 0;"><strong>1.10 &ldquo;Replacement Cost&rdquo;</strong> means the current, non-depreciated cost to purchase new equipment of the same make and model (or the nearest equivalent then available), plus tax, freight, and the Company&rsquo;s reasonable costs to place the replacement into rental-ready service.</p>
+    <p style="margin:8px 0;"><strong>1.11 &ldquo;Damage Waiver&rdquo;</strong> means the optional add-on described in Section 10 that, if purchased, limits the Customer&rsquo;s liability for certain accidental damage on the terms and subject to the exclusions stated there.</p>
+    <p style="margin:8px 0;"><strong>1.12 &ldquo;COI&rdquo;</strong> means a certificate of insurance evidencing the coverage required by Section 7 and naming Eastern Rentals as additional insured.</p>
+  </div>
+
+  <!-- ====== SECTION 2 RENTAL & TERM ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">02</span>Rental &amp; Term</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>2.1 Grant.</strong> The Company rents the Equipment to the Customer for the Rental Period only. This Agreement is a rental of personal property and conveys no ownership, title, equity, or purchase right of any kind. Title to and ownership of the Equipment remain with the Company at all times.</p>
+    <p style="margin:8px 0;"><strong>2.2 Rental Period &amp; availability.</strong> The Rental Period is stated at booking. The Company offers next-day availability as standard and maintains no turnaround buffer between rentals; the Customer therefore acknowledges that timely Retrieval is essential and that late return directly harms the Company&rsquo;s ability to serve the next customer.</p>
+    <p style="margin:8px 0;"><strong>2.3 No extension by holding over.</strong> Continued possession after the scheduled Retrieval time does not extend the Rental Period and is governed by the late-return provisions of Section 3.9.</p>
+    <p style="margin:8px 0;"><strong>2.4 Pricing basis.</strong> Powered and Unpowered Equipment (other than dumpsters) rent on a daily-rate basis with no multi-day discount. Dumpsters rent on a separate flat-fee model as provided in Section 3.7.</p>
+  </div>
+
+  <!-- ====== SECTION 3 PAYMENT, FEES & DEPOSITS ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">03</span>Payment, Fees &amp; Deposits</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>3.1 Booking Fee.</strong> A non-refundable Booking Fee is collected at reservation to secure the Equipment and reservation date. The Booking Fee credits toward the total rental cost but is not refundable under any circumstance, including cancellation, no-show, or the Company&rsquo;s refusal of delivery under this Agreement.</p>
+    <p style="margin:8px 0;"><strong>3.2 Balance due.</strong> The full remaining balance of the rental cost, delivery charges, applicable Security Deposit, service fees, and sales tax is due at pickup or Delivery, before the Customer takes possession of the Equipment. The Company may withhold Delivery until payment clears.</p>
+    <p style="margin:8px 0;"><strong>3.3 Security Deposit.</strong> The Security Deposit equals thirty percent (30%) of the pre-tax rental subtotal. For rentals of five (5) days or fewer, the Company holds (authorizes but does not charge) the Security Deposit on the Customer&rsquo;s payment method at handover. For rentals longer than five (5) days, the Company charges the Security Deposit in full, upfront, at handover. The Security Deposit secures, without limitation, damage, loss, theft, late-return fees, refueling, cleaning, and any unpaid amounts, and does not limit the Customer&rsquo;s liability where actual amounts owed exceed it.</p>
+    <p style="margin:8px 0;"><strong>3.4 Card service fee.</strong> A card service fee of three and one-half percent (3.5%) applies to all payments made by card. This fee is charged in addition to all other amounts, does not count toward the rental total or the Security Deposit, and is non-refundable.</p>
+    <p style="margin:8px 0;"><strong>3.5 Delivery pricing.</strong> Delivery and Retrieval are priced at a base charge of $199 for sites within ten (10) miles of the Company&rsquo;s location, plus $5.00 per mile for each mile beyond ten (10). The Company serves a maximum radius of forty (40) miles; the Company is not obligated to deliver beyond that radius.</p>
+    <p style="margin:8px 0;"><strong>3.6 Sales tax.</strong> New York State and local sales tax at the applicable rate (currently 8.75% in Suffolk County) applies to all taxable charges and is added to the amounts due.</p>
+    <p style="margin:8px 0;"><strong>3.7 Dumpster flat-fee model.</strong> Dumpsters rent on a flat-fee basis with no daily-rate component. Thirty percent (30%) of the dumpster subtotal is due at booking as a non-refundable deposit, and the balance is due as provided in Section 3.2. Overweight, prohibited-material, contamination, and extended-hold charges may apply and are the Customer&rsquo;s responsibility.</p>
+    <p style="margin:8px 0;"><strong>3.8 No multi-day discount.</strong> Rates are charged per day with no volume or multi-day discount.</p>
+    <p style="margin:8px 0;"><strong>3.9 Late-return fee.</strong> If the Equipment is not available for Retrieval at the scheduled time, the Customer shall pay a late-return fee equal to one hundred fifty percent (150%) of the applicable daily rate for each calendar day or portion of a day until the Company confirms Retrieval, in addition to any damage, loss, or re-rental costs the Company incurs. The Parties agree this fee is a reasonable pre-estimate of the Company&rsquo;s harm given its next-day, no-buffer operation and is not a penalty.</p>
+    <div style="background:#FBF4D2;border-left:5px solid #F4C000;border-radius:3px;padding:9px 14px;margin:10px 0;font-family:'Spectral',serif;font-size:12.5px;line-height:1.5;color:#5A4E1E;"><span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8A7414;">[Note &mdash; aggressive]</span> The 150%/day late fee is intended to be punitive enough to discourage late returns. New York courts may scrutinize liquidated-damages clauses that function as penalties. Confirm you want to keep this rate as-is; the &ldquo;reasonable pre-estimate&rdquo; recital is included to support enforceability.</div>
+    <p style="margin:8px 0;"><strong>3.10 Authorization to charge.</strong> The Customer authorizes the Company to charge the Security Deposit and any additional amounts owed &mdash; including damage, loss, theft, late-return fees, refueling, cleaning, and unpaid balances that exceed the Security Deposit &mdash; to the payment method on file, without prior notice. This authorization survives the Rental Period.</p>
+    <p style="margin:8px 0;"><strong>3.11 Fuel &amp; consumables.</strong> Powered Equipment is delivered fueled and must be returned at the same fuel level. Equipment returned with a lower fuel level will incur a refueling charge equal to the prevailing local fuel cost plus a seventy-five dollar ($75) refueling service surcharge per unit. The Customer is responsible for all consumables (including fuel, oil, and wear parts consumed through use) during the Rental Period.</p>
+    <p style="margin:8px 0;"><strong>3.12 Non-payment; suspension; collection.</strong> The Company may suspend or refuse future rentals to any Customer with an unpaid balance and may refer unpaid amounts to collection. Unpaid amounts accrue interest at the lesser of one and one-half percent (1.5%) per month or the maximum rate permitted by New York law.</p>
+  </div>
+
+  <!-- ====== SECTION 4 DELIVERY, SITE CONDITIONS & ACCESS ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">04</span>Delivery, Site Conditions &amp; Access</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>4.1 Customer&rsquo;s site responsibilities.</strong> The Customer is solely responsible, at its own expense, for: (a) safe and legal site access adequate for the Company&rsquo;s delivery vehicle and the Equipment; (b) suitable ground and surface conditions; (c) obtaining all permits, approvals, and authorizations required for the Equipment&rsquo;s presence and use at the site; and (d) marking and locating all underground and overhead utilities, including making any required &ldquo;call before you dig&rdquo; / New York 811 notification before any use of digging, grinding, or ground-engaging Equipment.</p>
+    <p style="margin:8px 0;"><strong>4.2 No liability for site conditions or utilities.</strong> The Company is not liable for any damage, injury, delay, or loss caused by inadequate or unsafe site access, unsuitable ground conditions, missing permits, or unmarked, mismarked, or undermarked utilities. The Customer assumes all such risk.</p>
+    <p style="margin:8px 0;"><strong>4.3 Failed delivery.</strong> If, on the scheduled delivery day, the site is inaccessible, unsafe, or the Customer or its authorized representative is not present to accept and sign for Delivery, a failed-delivery fee applies equal to the full delivery charge that would have applied under Section 3.5 (minimum $199), in addition to forfeiture of the Booking Fee. Rescheduling is subject to availability and a new delivery charge.</p>
+    <p style="margin:8px 0;"><strong>4.4 Right to refuse delivery.</strong> The Company may, in its sole and reasonable judgment, refuse or abort Delivery if site conditions are unsafe or unlawful or if the Customer has not satisfied a condition of this Agreement (including Section 7 insurance requirements). Such refusal is not a breach by the Company, and the Booking Fee is not refunded.</p>
+  </div>
+
+  <!-- ====== SECTION 5 ASSUMPTION OF RISK & LIABILITY ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">05</span>Assumption of Risk &amp; Limitation of Liability</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>5.1 Full assumption of risk.</strong> The Customer knowingly and voluntarily assumes all risk of injury, death, and property damage arising from or relating to the delivery, use, misuse, operation, transport, storage, or presence of the Equipment, from the moment of Delivery until confirmed Retrieval, whether the harm is to the Customer, its employees, agents, invitees, or any third party. The Customer accepts the Equipment &ldquo;AS IS&rdquo; and &ldquo;WITH ALL FAULTS&rdquo; and acknowledges it has had the opportunity to inspect the Equipment at Delivery.</p>
+    <p style="margin:8px 0;"><strong>5.2 Disclaimer of warranties.</strong> The Company disclaims all warranties, express or implied, including the implied warranties of merchantability and fitness for a particular purpose, to the fullest extent permitted by New York law.</p>
+    <p style="margin:8px 0;"><strong>5.3 No liability for consequential or downtime losses.</strong> The Company is not liable for any lost profits, lost business, business interruption, loss of use, or any indirect, incidental, special, punitive, or consequential damages arising from Equipment downtime, malfunction, breakdown, unavailability, or late, early, or failed delivery, even if advised of the possibility of such damages.</p>
+    <p style="margin:8px 0;"><strong>5.4 Liability cap.</strong> The Company&rsquo;s total aggregate liability arising out of or relating to this Agreement or the Equipment, under any theory, shall not exceed the total rental fees actually paid by the Customer for the specific rental giving rise to the claim.</p>
+    <div style="background:#FBF4D2;border-left:5px solid #F4C000;border-radius:3px;padding:9px 14px;margin:10px 0;font-family:'Spectral',serif;font-size:12.5px;line-height:1.5;color:#5A4E1E;"><span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8A7414;">[Note &mdash; aggressive]</span> New York (Gen. Oblig. Law &sect; 5-321 and related case law) limits a party&rsquo;s ability to disclaim liability for its own negligence, especially gross negligence or willful acts. This assumption-of-risk / limitation package is drafted to the outer edge of enforceability; confirm you want it kept as broad as written.</div>
+  </div>
+
+  <!-- ====== SECTION 6 INDEMNIFICATION ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">06</span>Indemnification &amp; Waiver of Subrogation</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>6.1 Indemnity.</strong> The Customer shall defend, indemnify, and hold harmless the Company and its owner, employees, and agents from and against any and all third-party claims, demands, suits, losses, liabilities, damages, fines, penalties, costs, and expenses (including reasonable attorneys&rsquo; fees) arising from or relating to the presence, use, operation, transport, or storage of the Equipment at or in connection with the Customer&rsquo;s site or activities during the Rental Period, except to the extent finally determined to have been caused by the Company&rsquo;s sole gross negligence or willful misconduct.</p>
+    <p style="margin:8px 0;"><strong>6.2 Waiver of subrogation.</strong> The Customer waives, and shall cause its insurers to waive, any and all rights of subrogation and recovery against the Company for any loss or damage covered or coverable by the Customer&rsquo;s insurance, whether or not such loss is caused by the Company&rsquo;s negligence. The Customer&rsquo;s insurance shall be primary and non-contributory as to the Company.</p>
+    <p style="margin:8px 0;"><strong>6.3 Survival.</strong> The obligations in this Section survive the expiration or termination of this Agreement and the return of the Equipment.</p>
+  </div>
+
+  <!-- ====== SECTION 7 INSURANCE ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">07</span>Insurance Requirements on the Customer</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>7.1 Required coverage.</strong> For all rentals of Powered Equipment, and for any rental in which the Equipment&rsquo;s aggregate Replacement Cost exceeds five thousand dollars ($5,000), the Customer shall maintain commercial general liability insurance of not less than $1,000,000 per occurrence / $2,000,000 aggregate, naming <strong>Eastern Rentals as additional insured</strong>, in effect for the entire Rental Period.</p>
+    <div style="background:#FBF4D2;border-left:5px solid #F4C000;border-radius:3px;padding:9px 14px;margin:10px 0;font-family:'Spectral',serif;font-size:12.5px;line-height:1.5;color:#5A4E1E;"><span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8A7414;">[Note &mdash; set threshold]</span> Recommended threshold: require COI + additional-insured for all Powered Equipment regardless of value, and for any Unpowered rental over $5,000 replacement value. Homeowner renters often carry only a homeowner&rsquo;s policy that excludes this &mdash; for those, the damage-waiver-fee alternative in 7.3 is the practical path. Adjust the dollar threshold and limits to your fleet values.</div>
+    <p style="margin:8px 0;"><strong>7.2 Proof before delivery.</strong> For the skid steer, wood chipper, and stump grinder (and any other Powered Equipment the Company designates), the Customer must deliver an acceptable COI to the Company <strong>before Delivery</strong>. Delivery is expressly conditioned on the Company&rsquo;s receipt and approval of the COI.</p>
+    <p style="margin:8px 0;"><strong>7.3 Failure to provide COI.</strong> If the Customer does not provide an acceptable COI when required, the Company may, in its sole discretion: (a) refuse Delivery, with the Booking Fee forfeited and any failed-delivery fee applicable; (b) require the Customer to purchase the Damage Waiver (Section 10) and pay an uninsured-rental surcharge as a condition of Delivery; or (c) both refuse Delivery and retain fees. Acceptance of a Damage Waiver in lieu of insurance does not waive any other term of this Agreement.</p>
+  </div>
+
+  <!-- ====== SECTION 8 OPERATION & MISUSE ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">08</span>Equipment Operation, Competency &amp; Prohibited Uses</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>8.1 Operator competency certification.</strong> For all Powered Equipment the Customer self-operates, the Customer certifies that it and each person who will operate the Equipment is competent, trained, and physically able to operate that Equipment safely and in accordance with the manufacturer&rsquo;s instructions and all applicable laws and safety standards. The Customer is responsible for reading all safety materials and for the safe operation of the Equipment.</p>
+    <p style="margin:8px 0;"><strong>8.2 Disclaimer of liability for operation.</strong> The Company does not operate the Equipment for the Customer and disclaims all liability for any injury, death, or damage resulting from the Customer&rsquo;s or any other person&rsquo;s operation of the Equipment. The Customer assumes full responsibility for such operation.</p>
+    <p style="margin:8px 0;"><strong>8.3 Prohibited uses.</strong> The Customer shall not, and shall not permit any person to: (a) sublet, re-rent, lend, or transfer the Equipment to any third party; (b) use the Equipment beyond its rated capacity or specifications; (c) use the Equipment for any purpose other than the purpose stated at booking; (d) modify, alter, repair, repaint, or tamper with the Equipment or its safety devices; (e) operate the Equipment while impaired by alcohol, drugs, or medication; (f) use the Equipment for any unlawful purpose; or (g) permit operation by anyone other than the Customer or the Customer&rsquo;s authorized employees who meet the competency certification in Section 8.1.</p>
+    <p style="margin:8px 0;"><strong>8.4 Immediate repossession.</strong> If the Company reasonably believes the Equipment is being misused, is being operated unsafely, or is at material risk of damage, loss, or theft, the Company may immediately enter the site and repossess the Equipment without notice and without liability, and the Customer is entitled to no refund. The Customer grants the Company and its agents license to enter any premises where the Equipment is located to inspect or repossess it.</p>
+  </div>
+
+  <!-- ====== SECTION 9 DAMAGE, LOSS & THEFT ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">09</span>Damage, Loss &amp; Theft</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>9.1 Responsibility while in possession.</strong> The Customer is responsible for the Equipment at all times while In the Customer&rsquo;s Possession (Section 1.7), regardless of fault or cause, subject only to a validly purchased and applicable Damage Waiver under Section 10.</p>
+    <p style="margin:8px 0;"><strong>9.2 Damage at full replacement cost.</strong> The Customer is liable for all damage to the Equipment beyond normal wear and tear, assessed at full Replacement Cost of the damaged parts or unit &mdash; not depreciated value &mdash; plus reasonable repair labor, and for the Company&rsquo;s lost rental revenue while the Equipment is out of service.</p>
+    <p style="margin:8px 0;"><strong>9.3 Loss or theft at full replacement value.</strong> If the Equipment is lost, stolen, destroyed, or not returned while In the Customer&rsquo;s Possession, the Customer is liable for the full Replacement Cost of the Equipment, regardless of fault. Reporting a theft to the police does not relieve the Customer of this liability.</p>
+    <p style="margin:8px 0;"><strong>9.4 Duty to secure against theft.</strong> The Customer shall secure the Equipment against theft at all times when not in active use, including by storing it in a locked and/or lit area and, where applicable, chaining or immobilizing it. Failure to take reasonable security measures voids any Damage Waiver coverage for theft or loss and leaves the Customer fully liable under Section 9.3.</p>
+    <p style="margin:8px 0;"><strong>9.5 Normal wear and tear.</strong> &ldquo;Normal wear and tear&rdquo; means the ordinary, expected deterioration from proper use for the Equipment&rsquo;s intended purpose. It does not include, without limitation, dents, bends, cracks, breakage, punctures, fluid contamination, burnt clutches, bent or broken teeth/blades, cosmetic damage beyond minor scuffing, or damage from misuse or neglect.</p>
+  </div>
+
+  <!-- ====== SECTION 10 DAMAGE WAIVER ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">10</span>Optional Damage Waiver</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>10.1 Nature of the waiver.</strong> The Customer may elect, for an additional non-refundable fee disclosed at booking (the &ldquo;Damage Waiver Fee&rdquo;), to purchase a Damage Waiver. The Damage Waiver is <strong>not insurance</strong>. It is a contractual limitation under which the Company agrees to waive the Customer&rsquo;s liability for <em>accidental</em> physical damage to the Equipment arising from proper use, subject to the exclusions below.</p>
+    <p style="margin:8px 0;"><strong>10.2 What the Damage Waiver does NOT cover.</strong> The Damage Waiver does not cover, and the Customer remains fully liable for, damage or loss arising from: (a) gross negligence, recklessness, or willful misconduct; (b) any unlawful or prohibited use, or use outside the Equipment&rsquo;s intended purpose or rated capacity (Section 8.3); (c) operation by an unauthorized or non-certified person, or operation while impaired; (d) theft or loss where the Customer failed to secure the Equipment as required by Section 9.4; (e) tire, tube, undercarriage, or fluid-contamination damage; (f) missing Equipment, keys, or components; (g) failure to maintain fluid or fuel levels; and (h) consequential losses. A deductible/participation amount disclosed at booking may apply to covered claims.</p>
+    <p style="margin:8px 0;"><strong>10.3 No stacking.</strong> The Damage Waiver does not reduce the Security Deposit hold or replace the insurance requirements of Section 7 except where the Company expressly accepts it in lieu of a COI under Section 7.3.</p>
+    <div style="background:#FBF4D2;border-left:5px solid #F4C000;border-radius:3px;padding:9px 14px;margin:10px 0;font-family:'Spectral',serif;font-size:12.5px;line-height:1.5;color:#5A4E1E;"><span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8A7414;">[Note]</span> Set the Damage Waiver Fee (commonly 10&ndash;15% of the rental subtotal) and any deductible at booking. Because the waiver is not insurance, avoid describing it as &ldquo;coverage&rdquo; in marketing to reduce regulatory risk in NY.</div>
+  </div>
+
+  <!-- ====== SECTION 11 CONDITION DOCUMENTATION ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">11</span>Photographic &amp; Condition Documentation</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>11.1 Photos and video as the record.</strong> The Company photographs and/or videos the Equipment at Delivery and at Retrieval. The Parties agree that these images are the authoritative record of the Equipment&rsquo;s condition at those times, and any difference between them (beyond normal wear and tear) is presumed to be damage occurring while In the Customer&rsquo;s Possession.</p>
+    <p style="margin:8px 0;"><strong>11.2 Waiver of objection.</strong> The Customer agrees to this method of documentation and waives any objection to it, absent clear and demonstrable error in the images themselves. The Customer may request copies of the images.</p>
+  </div>
+
+  <!-- ====== SECTION 12 CANCELLATIONS & NO-SHOWS ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">12</span>Cancellations &amp; No-Shows</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>12.1 Booking Fee non-refundable.</strong> The Booking Fee is non-refundable in all cases (Section 3.1).</p>
+    <p style="margin:8px 0;"><strong>12.2 Cancellation window.</strong> Cancellations made more than forty-eight (48) hours before the scheduled Delivery time forfeit only the Booking Fee. Cancellations made within forty-eight (48) hours of the scheduled Delivery time forfeit the Booking Fee <strong>and</strong> incur a late-cancellation fee equal to thirty percent (30%) of the pre-tax rental subtotal, reflecting the Company&rsquo;s lost same-day/next-day booking opportunity.</p>
+    <p style="margin:8px 0;"><strong>12.3 No-show.</strong> If the Customer is not present, reachable, or ready to accept Delivery at the scheduled time, the reservation is treated as a same-day cancellation under Section 12.2 and a failed-delivery fee applies under Section 4.3. The Company will attempt reasonable contact but is not obligated to wait or to reschedule.</p>
+  </div>
+
+  <!-- ====== SECTION 13 DEFAULT & REMEDIES ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">13</span>Default &amp; Remedies</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>13.1 Events of default.</strong> The Customer is in default if it: fails to pay any amount when due; breaches any term of this Agreement; misuses the Equipment; provides false information; or becomes insolvent.</p>
+    <p style="margin:8px 0;"><strong>13.2 Remedies.</strong> On default, the Company may, in addition to all other remedies at law or equity and without waiving any: (a) immediately repossess the Equipment under Section 8.4; (b) charge the payment method on file under Section 3.10; (c) terminate the rental without refund; (d) suspend future rentals; and (e) recover all amounts owed plus costs of collection and enforcement (Section 14.4). The Company&rsquo;s remedies are cumulative.</p>
+  </div>
+
+  <!-- ====== SECTION 14 GENERAL PROVISIONS ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">14</span>Dispute Resolution &amp; General Provisions</h2>
+  <div style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;">
+    <p style="margin:8px 0;"><strong>14.1 Governing law &amp; venue.</strong> This Agreement is governed by the laws of the State of New York without regard to conflict-of-laws principles. Subject to Section 14.2, the Parties consent to exclusive jurisdiction and venue in the state courts located in Suffolk County, New York.</p>
+    <p style="margin:8px 0;"><strong>14.2 Dispute resolution.</strong> Except for (i) the Company&rsquo;s claims to collect unpaid amounts or to recover, repossess, or protect the Equipment, and (ii) any claim that qualifies for small claims court, which the Company may bring in the appropriate Suffolk County court, any dispute arising out of this Agreement shall be resolved by binding arbitration administered by the American Arbitration Association under its Commercial Rules, seated in Suffolk County, New York, before a single arbitrator. The Parties waive any right to a jury trial and to participate in any class or representative action.</p>
+    <div style="background:#FBF4D2;border-left:5px solid #F4C000;border-radius:3px;padding:9px 14px;margin:10px 0;font-family:'Spectral',serif;font-size:12.5px;line-height:1.5;color:#5A4E1E;"><span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8A7414;">[Note &mdash; recommendation]</span> For a business this size, a <strong>small-claims carve-out with arbitration for larger disputes</strong> (as drafted) is usually the better posture: most of your disputes are collections or damage claims under the NY small-claims limit ($10,000 in NYC / $5,000 in many town/village courts), which are fast and cheap in court, while arbitration keeps larger, higher-exposure disputes private and out of a jury&rsquo;s hands. Pure arbitration adds filing/arbitrator cost that can exceed the value of a small claim; pure litigation exposes you to juries and class actions. The class-action waiver above materially favors you &mdash; keep it. Confirm the AAA forum and cost-allocation with counsel.</div>
+    <p style="margin:8px 0;"><strong>14.3 Attorneys&rsquo; fees.</strong> If the Company retains counsel or a collection agency to enforce this Agreement or collect amounts owed, the Customer shall pay the Company&rsquo;s reasonable attorneys&rsquo; fees, court and arbitration costs, and collection costs, whether or not suit is filed.</p>
+    <p style="margin:8px 0;"><strong>14.4 Severability.</strong> If any provision of this Agreement is held invalid or unenforceable, that provision shall be modified to the minimum extent necessary to make it enforceable, or if it cannot be, severed, and the remaining provisions shall remain in full force.</p>
+    <p style="margin:8px 0;"><strong>14.5 Entire agreement; no oral modification.</strong> This Agreement, together with the booking details it incorporates, is the entire agreement between the Parties and supersedes all prior or contemporaneous discussions. It may be amended only by a writing signed (including electronically) by both Parties. No oral statement modifies it.</p>
+    <p style="margin:8px 0;"><strong>14.6 Electronic signatures.</strong> The Parties agree this Agreement may be executed electronically (including via SignWell), that electronic signatures, initials, and records are valid, binding, and enforceable to the same extent as handwritten signatures under the federal ESIGN Act and New York&rsquo;s Electronic Signatures and Records Act (ESRA), and that neither Party will contest the validity of this Agreement on the basis that it was signed electronically.</p>
+    <p style="margin:8px 0;"><strong>14.7 Assignment; waiver.</strong> The Customer may not assign this Agreement. The Company&rsquo;s failure to enforce any provision is not a waiver of it. Sections that by their nature should survive (including Sections 5, 6, 9, 10, and 14) survive termination.</p>
+  </div>
+
+  <!-- ====== SIGNATURE BLOCK ====== -->
+  <h2 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.05em;text-transform:uppercase;color:#17181A;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid #17181A;display:flex;align-items:baseline;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#17181A;background:#F4C000;padding:2px 9px;border-radius:2px;">15</span>Acknowledgment &amp; Signatures</h2>
+  <p style="font-family:'Spectral',serif;font-size:14px;line-height:1.62;color:#26282B;margin:0 0 18px;text-align:justify;">By signing below, the Customer acknowledges that it has read, understood, and agrees to every term of this Agreement, including the assumption of risk (Section 5), indemnification (Section 6), and damage/loss/theft liability (Section 9), and confirms it is authorized to enter into this Agreement.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:8px;">
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#55606B;margin-bottom:22px;">Customer</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 22px;">Signature</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 22px;">Printed name &amp; title</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 0;">Date</div>
+    </div>
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#55606B;margin-bottom:22px;">Eastern Rentals (Company)</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 22px;">Signature</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 22px;">Printed name &amp; title</div>
+      <div style="border-bottom:1.5px solid #17181A;height:26px;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9AA3AB;margin:5px 0 0;">Date</div>
+    </div>
+  </div>
+
+  <!-- ============== APPENDIX (commentary) ============== -->
+  <sc-if value="{{ showCommentary }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;align-items:center;gap:14px;margin:38px 0 4px;">
+    <div style="flex:1;height:6px;background:repeating-linear-gradient(-45deg,#17181A 0 10px,#F4C000 10px 20px);border-radius:2px;"></div>
+    <span style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55606B;white-space:nowrap;">End of Agreement</span>
+    <div style="flex:1;height:6px;background:repeating-linear-gradient(-45deg,#17181A 0 10px,#F4C000 10px 20px);border-radius:2px;"></div>
+  </div>
+
+  <section style="margin:20px 0 8px;background:#17181A;border-radius:4px;padding:20px 22px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#F4C000;margin-bottom:12px;">Clauses to Review With an Attorney Before Use</div>
+    <ol style="margin:0;padding-left:20px;font-family:'Spectral',serif;font-size:13px;line-height:1.6;color:#D7DBDF;">
+      <li style="margin-bottom:9px;"><strong style="color:#fff;">Arbitration &amp; class-action waiver / venue (14.1&ndash;14.2).</strong> Confirm AAA is the right forum and that the small-claims carve-out and class waiver are enforceable and cost-appropriate for your dispute mix in New York.</li>
+      <li style="margin-bottom:9px;"><strong style="color:#fff;">Assumption of risk &amp; limitation of liability (Section 5).</strong> NY Gen. Oblig. Law &sect; 5-321 and case law restrict disclaiming your own negligence &mdash; the broad AS-IS/no-consequential/liability-cap package sits at the edge of enforceability.</li>
+      <li style="margin-bottom:9px;"><strong style="color:#fff;">Liquidated fees &mdash; late return (3.9), failed delivery (4.3), late cancellation (12.2).</strong> These are drafted to deter, and could be challenged as unenforceable penalties if they don&rsquo;t reasonably estimate actual harm.</li>
+      <li style="margin-bottom:9px;"><strong style="color:#fff;">Damage Waiver scope &amp; exclusions (Section 10).</strong> Because it is not insurance, confirm the marketing language and exclusions don&rsquo;t stray into regulated insurance territory in NY.</li>
+      <li style="margin-bottom:0;"><strong style="color:#fff;">Indemnification &amp; waiver of subrogation (Section 6).</strong> Verify the additional-insured / primary-and-non-contributory / subrogation-waiver language matches what your and the Customer&rsquo;s policies will actually endorse.</li>
+    </ol>
+  </section>
+  </sc-if>
+
+</x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: &quot;816px&quot;, &quot;height&quot;: &quot;1056px&quot; },
+  &quot;showCommentary&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Document&quot;, &quot;label&quot;: &quot;Show drafting notes &amp; attorney-review appendix&quot; },
+  &quot;showDraftBanner&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Document&quot;, &quot;label&quot;: &quot;Show \&quot;draft for attorney review\&quot; banner&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showCommentary: this.props.showCommentary ?? true,
+      showDraftBanner: this.props.showDraftBanner ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+services:
+  web:
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:-}
+        NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
+        NEXT_PUBLIC_GADS_ID: ${NEXT_PUBLIC_GADS_ID:-}
+    container_name: hte_web
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    expose:
+      - "3000"
+    depends_on:
+      - api
+    networks:
+      - hampton
+
+  api:
+    build:
+      context: ./api
+    container_name: hte_api
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - TZ=America/New_York
+    expose:
+      - "8000"
+    volumes:
+      - uploads:/var/hte/uploads
+    networks:
+      - hampton
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: hte_nginx
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3020:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - web
+      - api
+    networks:
+      - hampton
+
+volumes:
+  uploads:
+    driver: local
+
+networks:
+  hampton:
+    external: true
+    name: hosthampton_hampton_net
