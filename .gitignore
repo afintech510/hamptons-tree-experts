@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Secrets / certificates (never commit)
+*.pem
+*.key
+
+# Build outputs
+web/.next/
+web/out/
+api/__pycache__/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+uploads/
+
+# Test
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Phase progress (local-only tracking)
+PHASE-*-PROGRESS.md
+
+# local photo working dir (downloads, contact sheets, scripts)
+.photo-work/

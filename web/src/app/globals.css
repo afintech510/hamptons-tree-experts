@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "../styles/design-tokens.css";
+
+@theme inline {
+  /* --- Colors mapped from design tokens --- */
+  --color-evergreen: var(--color-evergreen);
+  --color-evergreen-light: var(--color-evergreen-light);
+  --color-evergreen-dark: var(--color-evergreen-dark);
+  --color-bark: var(--color-bark);
+  --color-bark-light: var(--color-bark-light);
+  --color-bark-dark: var(--color-bark-dark);
+  --color-sand: var(--color-sand);
+  --color-sand-light: var(--color-sand-light);
+  --color-sand-dark: var(--color-sand-dark);
+  --color-rust: var(--color-rust);
+  --color-rust-hover: var(--color-rust-hover);
+  --color-rust-light: var(--color-rust-light);
+  --color-hte-white: var(--color-white);
+  --color-warm-gray-50: var(--color-gray-50);
+  --color-warm-gray-100: var(--color-gray-100);
+  --color-warm-gray-200: var(--color-gray-200);
+  --color-warm-gray-300: var(--color-gray-300);
+  --color-warm-gray-400: var(--color-gray-400);
+  --color-warm-gray-500: var(--color-gray-500);
+  --color-warm-gray-600: var(--color-gray-600);
+  --color-warm-gray-700: var(--color-gray-700);
+  --color-warm-gray-800: var(--color-gray-800);
+  --color-warm-gray-900: var(--color-gray-900);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+
+  /* --- Fonts --- */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: var(--leading-normal);
+}
+
+/* Base element styles live in @layer base so Tailwind utility classes
+   (e.g. text-white on hero headings) can override them. Unlayered rules
+   would otherwise outrank the utilities layer in Tailwind v4. */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    color: var(--color-evergreen-dark);
+  }
+}
